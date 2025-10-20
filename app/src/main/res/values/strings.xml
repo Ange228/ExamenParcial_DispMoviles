@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">Juego_Colores</string>
+<string name="app_name">Juego_Colores</string>
+<string name="dialog_add_present_title">
+    ¡Bienvenido a "Desafío de Colores"!
+
+    </string>
+<string name="dialog_add_message">
+        Tienes 3 segundos para presionar el botón que coincida con el color que aparece en pantalla.
+        Nota: Cada acierto suma puntos.
+    </string>
 </resources>
