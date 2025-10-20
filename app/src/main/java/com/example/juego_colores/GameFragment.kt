@@ -14,6 +14,10 @@ class GameFragment : Fragment() {
     private lateinit var generatedColorView: View
     private lateinit var generatedColorBtn: MaterialButton
 
+    private lateinit var generatedColorAzul: MaterialButton
+    private lateinit var generatedColorRojo: MaterialButton
+    private lateinit var generatedColorAmarillo: MaterialButton
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -22,6 +26,9 @@ class GameFragment : Fragment() {
 
         generatedColorView = view.findViewById(R.id.generatedColorView)
         generatedColorBtn = view.findViewById(R.id.generatedColorBtn)
+        generatedColorAzul = view.findViewById(R.id.azulBtn)
+        generatedColorRojo = view.findViewById(R.id.rojoBtn)
+        generatedColorAmarillo = view.findViewById(R.id.amarilloBtn)
 
         generatedColorBtn.setOnClickListener {
             generateRandomColor()
