@@ -11,9 +11,13 @@ import android.graphics.Color
 import androidx.core.content.ContextCompat
 import android.os.CountDownTimer
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
+import com.example.juego_colores.viewModel.gviewModel
 import kotlin.random.nextInt
 
 class GameFragment : Fragment() {
+
+    private lateinit var gameViewModel: gviewModel
 
     private var puntaje: Int = 0
     private lateinit var nombreColor: String
@@ -32,12 +36,14 @@ class GameFragment : Fragment() {
     private lateinit var colorList: List<Pair<String, Int>>
     private lateinit var txtpuntaje: TextView
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_game, container, false)
 
+        gameViewModel = ViewModelProvider(requireActivity()).get(gviewModel::class.java)
         generatedColorView = view.findViewById(R.id.generatedColorView)
         generatedColorBtn = view.findViewById(R.id.generatedColorBtn)
         generatedColorAzul = view.findViewById(R.id.azulBtn)
@@ -114,6 +120,15 @@ class GameFragment : Fragment() {
                 generatedColorAzul.isEnabled = false
                 generatedColorRojo.isEnabled = false
                 generatedColorAmarillo.isEnabled = false
+
+                // Guardar puntaje
+                gameViewModel.agregarPuntaje(puntaje)
+
+                // Navegar a ResultFragment
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, ResultFragment())
+                    .addToBackStack(null)
+                    .commit()
 
             }
         }
