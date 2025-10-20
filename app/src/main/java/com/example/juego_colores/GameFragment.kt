@@ -14,8 +14,12 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.juego_colores.viewModel.gviewModel
 import kotlin.random.nextInt
+import android.media.MediaPlayer
+
 
 class GameFragment : Fragment() {
+
+    private var mediaPlayer: MediaPlayer? = null
 
     private lateinit var gameViewModel: gviewModel
 
@@ -98,15 +102,19 @@ class GameFragment : Fragment() {
         startTimer()
     }
 
-    private fun verificarColor(color:String){
-
+    private fun verificarColor(color: String) {
         if (color == nombreColor) {
-            puntaje ++
+            // Puntaje correcto
+            puntaje++
             txtpuntaje.text = "Puntaje: $puntaje"
+            playSound(R.raw.correcto)  // sonido correcto
             generateRandomColor()
+        } else {
+            // Puntaje incorrecto
+            playSound(R.raw.error)      // sonido error
         }
-
     }
+
     private fun startTimer() {
         countDownTimer = object : CountDownTimer(totalTime, 1000) {
             override fun onTick(millisUntilFinished: Long) {
@@ -135,10 +143,21 @@ class GameFragment : Fragment() {
         countDownTimer.start()
     }
 
+    private fun playSound(resId: Int) {
+        // Liberar cualquier mediaPlayer previo
+        mediaPlayer?.release()
+        mediaPlayer = MediaPlayer.create(requireContext(), resId)
+        mediaPlayer?.start()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         countDownTimer.cancel()
+        mediaPlayer?.release()
+        mediaPlayer = null
     }
+
+
 
 
 }
