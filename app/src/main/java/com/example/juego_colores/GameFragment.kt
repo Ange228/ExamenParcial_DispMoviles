@@ -55,6 +55,20 @@ class GameFragment : Fragment() {
         generatedColorAmarillo.isEnabled = false
             startGame()
 
+        generatedColorBtn.setOnClickListener {
+            verificarColor("verde")
+        }
+        generatedColorAzul.setOnClickListener {
+            verificarColor("azul")
+        }
+        generatedColorRojo.setOnClickListener {
+            verificarColor("rojo")
+        }
+        generatedColorAmarillo.setOnClickListener {
+            verificarColor("celeste")
+        }
+
+
         return view
     }
 
@@ -77,6 +91,13 @@ class GameFragment : Fragment() {
         startTimer()
     }
 
+    private fun verificarColor(color:String){
+
+        if (color == nombreColor) {
+            generateRandomColor()
+        }
+
+    }
     private fun startTimer() {
         countDownTimer = object : CountDownTimer(totalTime, 1000) {
             override fun onTick(millisUntilFinished: Long) {
