@@ -14,6 +14,8 @@ import android.widget.TextView
 import kotlin.random.nextInt
 
 class GameFragment : Fragment() {
+
+    private var puntaje: Int = 0
     private lateinit var nombreColor: String
 
     private lateinit var tvTimer: TextView
@@ -28,6 +30,7 @@ class GameFragment : Fragment() {
     private lateinit var generatedColorAmarillo: MaterialButton
 
     private lateinit var colorList: List<Pair<String, Int>>
+    private lateinit var txtpuntaje: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +44,8 @@ class GameFragment : Fragment() {
         generatedColorRojo = view.findViewById(R.id.rojoBtn)
         generatedColorAmarillo = view.findViewById(R.id.amarilloBtn)
         tvTimer = view.findViewById(R.id.tempView)
+        txtpuntaje = view.findViewById(R.id.puntaje)
+
 
         colorList = listOf(
             "celeste" to ContextCompat.getColor(requireContext(), R.color.celeste),
@@ -49,20 +54,16 @@ class GameFragment : Fragment() {
             "verde" to ContextCompat.getColor(requireContext(), R.color.verde)
         )
 
-        generatedColorBtn.isEnabled = false
-        generatedColorAzul.isEnabled = false
-        generatedColorRojo.isEnabled = false
-        generatedColorAmarillo.isEnabled = false
             startGame()
 
         generatedColorBtn.setOnClickListener {
-            verificarColor("verde")
+            verificarColor("rojo")
         }
         generatedColorAzul.setOnClickListener {
-            verificarColor("azul")
+            verificarColor("verde")
         }
         generatedColorRojo.setOnClickListener {
-            verificarColor("rojo")
+            verificarColor("azul")
         }
         generatedColorAmarillo.setOnClickListener {
             verificarColor("celeste")
@@ -94,6 +95,8 @@ class GameFragment : Fragment() {
     private fun verificarColor(color:String){
 
         if (color == nombreColor) {
+            puntaje ++
+            txtpuntaje.text = "Puntaje: $puntaje"
             generateRandomColor()
         }
 
@@ -106,7 +109,7 @@ class GameFragment : Fragment() {
             }
 
             override fun onFinish() {
-                tvTimer.text = "¡Se acabó!"
+                tvTimer.text = "¡Se acabó el tiempo!"
                 generatedColorBtn.isEnabled = false
                 generatedColorAzul.isEnabled = false
                 generatedColorRojo.isEnabled = false
