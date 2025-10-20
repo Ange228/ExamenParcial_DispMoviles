@@ -5,6 +5,7 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.commit
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class MainActivity : AppCompatActivity() {
@@ -32,18 +33,34 @@ class MainActivity : AppCompatActivity() {
             val interpolator = MyBounceInterpolator(0.2, 20.0)
             myAnim.interpolator = interpolator
 
+
+            myAnim.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(animation: android.view.animation.Animation?) {}
+
+                override fun onAnimationEnd(animation: android.view.animation.Animation?) {
+                    // Aquí reemplazamos el fragment después de la animación
+                    dialog.dismiss()
+                    supportFragmentManager.commit {
+                        replace(R.id.fragment_container, GameFragment())
+                    }
+                }
+
+                override fun onAnimationRepeat(animation: android.view.animation.Animation?) {}
+            })
+
             btnIniciar.startAnimation(myAnim)
+
+            }
+        }
+
+        fun clicked(view: View) {
+            val buttonclicked: Button = dialogView.findViewById(R.id.btn_Iniciar)
+            buttonclicked.text = "clicked"
+            val myAnim: Animation = AnimationUtils.loadAnimation(this, R.anim.bounce)
+
+            val interpolator = MyBounceInterpolator(0.2, 20.0)
+            myAnim.interpolator = interpolator
+
+            buttonclicked.startAnimation(myAnim)
         }
     }
-
-    fun clicked(view: View){
-        val buttonclicked: Button = dialogView.findViewById(R.id.btn_Iniciar)
-        buttonclicked.text="clicked"
-        val myAnim: Animation = AnimationUtils.loadAnimation(this, R.anim.bounce)
-
-        val interpolator = MyBounceInterpolator(0.2,20.0)
-        myAnim.interpolator = interpolator
-
-        buttonclicked.startAnimation(myAnim)
-    }
-}

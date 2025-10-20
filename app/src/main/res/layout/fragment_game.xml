@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        style="@style/TextAppearance.Material3.HeadlineMedium"
+        android:layout_width="401dp"
+        android:layout_height="186dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Selecciona el botón que sea del color del recuadro"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/generatedColorView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerInParent="true"
+        android:background="#959595" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/generatedColorBtn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/generatedColorView"
+        android:layout_alignEnd="@+id/btnAzul"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="190dp"
+        android:backgroundTint="@color/rojo"
+        android:paddingLeft="20dp"
+        android:text="Verde" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAzul"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="226dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="133dp"
+        android:backgroundTint="@color/rosado"
+        android:text="Azul" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRojo"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/btnRojo"
+        android:layout_alignBottom="@+id/generatedColorBtn"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="73dp"
+        android:backgroundTint="@color/azul"
+        android:text="Rojo" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAmarillo"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnAzul"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="191dp"
+        android:layout_marginTop="465dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="-77dp"
+        android:backgroundTint="@color/verde"
+        android:text="Amarillo" />
+
+
+</RelativeLayout>
