@@ -60,7 +60,7 @@ class GameFragment : Fragment() {
             "verde" to ContextCompat.getColor(requireContext(), R.color.verde)
         )
 
-            startGame()
+        startGame()
 
         generatedColorBtn.setOnClickListener {
             verificarColor("rojo")
@@ -80,9 +80,9 @@ class GameFragment : Fragment() {
     }
 
     private fun generateRandomColor(){
-        val (Color, valorColor) = colorList.random()
+        val (colorNombre, valorColor) = colorList.random()
 
-        nombreColor = Color
+        nombreColor = colorNombre
         generatedColorView.setBackgroundColor(valorColor)
 
     }

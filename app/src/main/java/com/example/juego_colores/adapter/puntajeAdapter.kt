@@ -7,9 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.juego_colores.R
 
-class PuntajeAdapter(
+class puntajeAdapter(
     private var puntajes: List<Int>
-) : RecyclerView.Adapter<PuntajeAdapter.PuntajeViewHolder>() {
+) : RecyclerView.Adapter<puntajeAdapter.PuntajeViewHolder>() {
 
     inner class PuntajeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvPuntaje: TextView = itemView.findViewById(R.id.tvPuntaje)
@@ -28,7 +28,6 @@ class PuntajeAdapter(
 
     override fun getItemCount(): Int = puntajes.size
 
-    // Método para actualizar la lista
     fun actualizarLista(nuevaLista: List<Int>) {
         this.puntajes = nuevaLista
         notifyDataSetChanged()
